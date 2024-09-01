@@ -1,11 +1,16 @@
 import { ClerkProvider } from "@clerk/nextjs";
-import { Inter } from "next/font/google";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import "./globals.css";
 import { dark } from "@clerk/themes";
+import Provider from "./Provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "LiveDocs",
@@ -25,7 +30,14 @@ export default function RootLayout({
       }}
     >
       <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>{children}</body>
+        <body
+          className={cn(
+            "min-h-screen font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <Provider>{children}</Provider>
+        </body>
       </html>
     </ClerkProvider>
   );
