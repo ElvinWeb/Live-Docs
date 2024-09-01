@@ -31,6 +31,7 @@ export const createDocument = async ({
     revalidatePath("/");
 
     return parseStringify(room);
+    
   } catch (error) {
     console.log(error);
   }
