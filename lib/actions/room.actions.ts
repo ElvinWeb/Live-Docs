@@ -71,6 +71,7 @@ export const updateDocument = async function (roomId: string, title: string) {
     revalidatePath(`document/${roomId}`);
 
     return parseStringify(updateRoom);
+    
   } catch (error) {
     console.log(error);
   }

@@ -3,13 +3,13 @@ import { getDocument } from "@/lib/actions/room.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-async function Document({ params: { id } }: SearchParamProps) {
+export default async function Document({ params: { id } }: SearchParamProps) {
   const clerkUser = await currentUser();
   if (!clerkUser) redirect("/sign-in");
 
   const room = await getDocument({
-    userId: id,
-    roomId: clerkUser.emailAddresses[0].emailAddress,
+    roomId: id,
+    userId: clerkUser.emailAddresses[0].emailAddress,
   });
 
   if (!room) redirect("/");
@@ -20,5 +20,3 @@ async function Document({ params: { id } }: SearchParamProps) {
     </main>
   );
 }
-
-export default Document;

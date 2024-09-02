@@ -10,11 +10,9 @@ import Loader from "@/components/Loader";
 import { getClerkUsers } from "@/lib/actions/user.actions";
 
 function Provider({ children }: { children: ReactNode }) {
-  const resolveUsersHandler = async function ({
-    userIds,
-  }: {
-    userIds: string[];
-  }) {
+  const resolveUsersHandler = async function ({ userIds }: { userIds: any[] }) {
+    console.log(userIds);
+
     const users = await getClerkUsers({ userIds });
     return users;
   };

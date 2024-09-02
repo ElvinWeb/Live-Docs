@@ -7,7 +7,7 @@ function ActiveCollaborators() {
 
   return (
     <ul className="collaborators-list">
-      {collaborators.map(({ id, avatar, email, name }) => (
+      {collaborators.map(({ id, avatar, name, color }) => (
         <li key={id}>
           <Image
             src={avatar}
@@ -15,6 +15,7 @@ function ActiveCollaborators() {
             width={100}
             height={100}
             className="inline-block size-8 rounded-full ring-2 ring-dark-100"
+            style={{ border: `3px solid ${color}` }}
           />
         </li>
       ))}
