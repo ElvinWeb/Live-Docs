@@ -6,8 +6,8 @@ function Loader() {
       <Image
         src="/assets/icons/loader.svg"
         alt="loader"
-        width={32}
-        height={32}
+        width={50}
+        height={50}
         className="animate-spin"
       />
     </div>
