@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { liveblocks } from "../liveblocks";
 import { revalidatePath } from "next/cache";
 import { parseStringify } from "../utils";
+import { CreateDocumentParams, RoomAccesses } from "@/types";
 
 export const createDocument = async ({
   userId,
@@ -37,11 +38,11 @@ export const createDocument = async ({
 };
 
 export const getDocument = async function ({
-  roomId,
   userId,
+  roomId,
 }: {
-  roomId: string;
   userId: string;
+  roomId: string;
 }) {
   try {
     const room = await liveblocks.getRoom(roomId);
@@ -71,7 +72,16 @@ export const updateDocument = async function (roomId: string, title: string) {
     revalidatePath(`document/${roomId}`);
 
     return parseStringify(updateRoom);
-    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDocuments = async function (email: string) {
+  try {
+    const rooms = await liveblocks.getRooms({ userId: email });
+
+    return parseStringify(rooms);
   } catch (error) {
     console.log(error);
   }

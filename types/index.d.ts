@@ -1,4 +1,5 @@
-/* eslint-disable no-unused-vars */
+import { BaseMetadata, ThreadData } from "@liveblocks/client";
+
 declare type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
@@ -77,4 +78,4 @@ declare type AddDocumentBtnProps = {
 
 declare type DeleteModalProps = { roomId: string };
 
-// declare type ThreadWrapperProps = { thread: ThreadData<BaseMetadata> };
+declare type ThreadWrapperProps = { thread: ThreadData<BaseMetadata> };

@@ -2,19 +2,23 @@
 
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { ClientSideSuspense, RoomProvider } from "@liveblocks/react/suspense";
-import ActiveCollaborators from "./ActiveCollaborators";
 import { useRef, useState, KeyboardEvent, useEffect } from "react";
+import { updateDocument } from "@/lib/actions/room.actions";
 import { Editor } from "./editor/Editor";
 import { Input } from "./ui/input";
 import Header from "./Header";
 import Image from "next/image";
-import { updateDocument } from "@/lib/actions/room.actions";
+import Loader from "./Loader";
+import ActiveCollaborators from "./ActiveCollaborators";
+import { CollaborativeRoomProps } from "@/types";
 
 const CollaborativeRoom = ({
   roomId,
   roomMetadata,
+  users,
+  currentUserType,
 }: CollaborativeRoomProps) => {
-  const currentUserType = "editor";
+  // const currentUserType = "editor";
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -66,7 +70,7 @@ const CollaborativeRoom = ({
 
   return (
     <RoomProvider id={roomId}>
-      <ClientSideSuspense fallback={<div>Loading…</div>}>
+      <ClientSideSuspense fallback={<Loader />}>
         <div className="collaborative-room">
           <Header>
             <div
@@ -96,7 +100,7 @@ const CollaborativeRoom = ({
                   width={25}
                   height={25}
                   onClick={() => setEditing(true)}
-                  className="pointer"
+                  className="cursor-pointer"
                 />
               )}
 
@@ -116,7 +120,7 @@ const CollaborativeRoom = ({
               </SignedIn>
             </div>
           </Header>
-          <Editor />
+          <Editor roomId={roomId} currentUserType={currentUserType} />
         </div>
       </ClientSideSuspense>
     </RoomProvider>
