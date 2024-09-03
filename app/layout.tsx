@@ -1,11 +1,11 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter as FontSans } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { dark } from "@clerk/themes";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import "./globals.css";
-import { dark } from "@clerk/themes";
+import { cn } from "@/lib/utils";
 import Provider from "./Provider";
+import "../styles/globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -14,7 +14,7 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: "LiveDocs",
-  description: "Your go-to collaborative editor",
+  description: "Your dynamic collaborative editor",
 };
 
 export default function RootLayout({

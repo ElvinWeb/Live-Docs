@@ -1,18 +1,18 @@
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { getDocuments } from "@/lib/actions/room.actions";
 import { currentUser } from "@clerk/nextjs/server";
+import { dateConverter } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import Header from "@/components/Header";
 import Image from "next/image";
 import AddDocumentBtn from "@/components/AddDocumentBtn";
 import Link from "next/link";
-import { dateConverter } from "@/lib/utils";
 
 const Home = async () => {
   const clerkUser = await currentUser();
   if (!clerkUser) redirect("/sign-in");
-  const email = clerkUser.emailAddresses[0].emailAddress;
 
+  const email = clerkUser.emailAddresses[0].emailAddress;
   const roomDocuments = await getDocuments(email);
 
   return (

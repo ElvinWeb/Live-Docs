@@ -10,7 +10,9 @@ import Header from "./Header";
 import Image from "next/image";
 import Loader from "./Loader";
 import ActiveCollaborators from "./ActiveCollaborators";
-import { CollaborativeRoomProps } from "@/types";
+import { CollaborativeRoomProps, User } from "@/types";
+import ShareModal from "./ShareModal";
+import MiniLoader from "./MiniLoader";
 
 const CollaborativeRoom = ({
   roomId,
@@ -18,7 +20,6 @@ const CollaborativeRoom = ({
   users,
   currentUserType,
 }: CollaborativeRoomProps) => {
-  // const currentUserType = "editor";
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -108,10 +109,16 @@ const CollaborativeRoom = ({
                 <p className="view-only-tag">View only</p>
               )}
 
-              {loading && <p className="text-sm text-gray-400">saving...</p>}
+              {loading && <MiniLoader />}
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
               <ActiveCollaborators />
+              <ShareModal
+                roomId={roomId}
+                collaborators={users as User[]}
+                creatorId={roomMetadata.creatorId}
+                currentUserType={currentUserType}
+              />
               <SignedOut>
                 <SignInButton />
               </SignedOut>
