@@ -15,6 +15,7 @@ import { Label } from "./ui/label";
 import UserTypeSelector from "./UserTypeSelector";
 import Collaborator from "./Collaborator";
 import Image from "next/image";
+import { updateDocumentAccess } from "@/lib/actions/room.actions";
 
 export default function ShareModal({
   roomId,
@@ -31,12 +32,12 @@ export default function ShareModal({
   const shareDocumentHandler = async function () {
     setLoading(true);
 
-    // await updateDocumentAccess({
-    //   roomId,
-    //   email,
-    //   userType: userType as UserType,
-    //   updatedBy: user.info,
-    // });
+    await updateDocumentAccess({
+      roomId,
+      email,
+      userType: userType as UserType,
+      updatedBy: user.info,
+    });
 
     setLoading(false);
   };
