@@ -10,6 +10,7 @@ export default function MiniLoader() {
         height={10}
         className="animate-spin"
       />
+      Loading...
     </div>
   );
 }
