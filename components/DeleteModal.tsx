@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { DeleteModalProps } from "@/types";
+import MiniLoader from "./MiniLoader";
 
 export const DeleteModal = ({ roomId }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ export const DeleteModal = ({ roomId }: DeleteModalProps) => {
     } catch (error) {
       console.log(error);
     }
-    
+
     setLoading(false);
   };
 
@@ -72,7 +73,7 @@ export const DeleteModal = ({ roomId }: DeleteModalProps) => {
             onClick={deleteDocumentHandler}
             className="gradient-red w-full"
           >
-            {loading ? "Deleting..." : "Delete"}
+            {loading ? <MiniLoader /> : "Delete"}
           </Button>
         </DialogFooter>
       </DialogContent>

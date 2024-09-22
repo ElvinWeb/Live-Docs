@@ -6,11 +6,10 @@ export default function MiniLoader() {
       <Image
         src="/assets/icons/loader.svg"
         alt="loader"
-        width={10}
-        height={10}
+        width={15}
+        height={15}
         className="animate-spin"
       />
-      Loading...
     </div>
   );
 }

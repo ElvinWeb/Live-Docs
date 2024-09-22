@@ -9,8 +9,9 @@ export const getClerkUsers = async function ({
 }: {
   userIds: string[];
 }) {
+  
   try {
-    const { data } = await clerkClient.users.getUserList({
+    const { data } = await clerkClient().users.getUserList({
       emailAddress: userIds,
     });
 
