@@ -10,6 +10,7 @@ import "../styles/globals.css";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  style: "normal",
 });
 
 export const metadata: Metadata = {
